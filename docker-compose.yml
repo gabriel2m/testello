@@ -1,0 +1,65 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    working_dir: /srv/app
+    volumes:
+      - .:/srv/app
+      - ./docker/app/php.ini:/usr/local/etc/php/php.ini
+    depends_on:
+      - mysql
+    networks:
+      - app
+    extra_hosts:
+      - host.docker.internal:host-gateway
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - ${APP_PORT:-8000}:80
+    volumes:
+      - .:/srv/app
+      - ./docker/nginx:/etc/nginx/conf.d/
+    depends_on:
+      - app
+    networks:
+      - app
+
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./docker/volumes/mysql:/var/lib/mysql
+    ports:
+      - ${DB_PORT:-8001}:3306
+    networks:
+      - app
+
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+      - ${PHPMYADMIN_PORT:-8002}:80
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: ${DB_USERNAME}
+      PMA_PASSWORD: ${DB_PASSWORD}
+    depends_on:
+      - mysql
+    networks:
+      - app
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - ${MAILHOG_PORT:-8003}:8025
+    networks:
+      - app
+
+networks:
+  app:
+    driver: bridge
