@@ -56,7 +56,13 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        return inertia('Customers/Show', compact('customer'));
+        return inertia('Customers/Show', [
+            'customer' => $customer,
+            'deliveries' => $customer
+                ->deliveries()
+                ->paginate(10)
+                ->withQueryString()
+        ]);
     }
 
     /**
