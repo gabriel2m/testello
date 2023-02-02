@@ -17,6 +17,7 @@ class CustomerController extends Controller
     {
         return inertia('Customers/Index', [
             'customers' => Customer::query()
+                ->orderBy('name')
                 ->paginate(10)
                 ->withQueryString()
         ]);

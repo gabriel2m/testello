@@ -39,8 +39,7 @@ class IndexTest extends TestCase
                         'customers.data',
                         10,
                         fn (Assert $page) => $page
-                            ->where('id', 1)
-                            ->where('name', Customer::first()->name)
+                            ->where('name', Customer::orderBy('name')->first()->name)
                             ->etc()
                     )
             );
