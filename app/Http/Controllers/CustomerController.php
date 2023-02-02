@@ -45,7 +45,7 @@ class CustomerController extends Controller
 
         if ($customer->exists)
             return to_route('customers.show', $customer)->with('message', 'Customer successfully stored');
-        return to_route('customers.index')->with('message', 'An error occurred');
+        return back()->with('message', 'An error occurred');
     }
 
     /**
@@ -79,13 +79,14 @@ class CustomerController extends Controller
      */
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
-        $message = 'An error occurred';
         if (
             $customer
             ->fill($request->validated())
             ->save()
         )
-            $message = 'Customer successfully updated';
+            return to_route('customers.show', $customer)->with('message', 'Customer successfully updated');
+        return back()->with('message', 'An error occurred');
+    }
 
         return to_route('customers.show', $customer)->with('message', $message);
     }
