@@ -41,6 +41,6 @@ class EditTest extends TestCase
 
         $data['id'] = 1;
 
-        Customer::where($data)->exists();
+        $this->assertDatabaseHas(Customer::class, $data);
     }
 }
