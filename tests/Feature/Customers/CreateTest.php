@@ -14,10 +14,8 @@ class CreateTest extends TestCase
 
     public function test_create_page_is_displayed(): void
     {
-        $user = User::factory()->create();
-
         $response = $this
-            ->actingAs($user)
+            ->actingAs($this->user)
             ->get('customers/create');
 
         $response->assertOk();
@@ -25,14 +23,12 @@ class CreateTest extends TestCase
 
     public function test_customers_can_be_created(): void
     {
-        $user = User::factory()->create();
-
         $data = [
             'name' => 'Test Customer',
         ];
 
         $response = $this
-            ->actingAs($user)
+            ->actingAs($this->user)
             ->post('customers', $data);
 
         $response->assertRedirect('customers');

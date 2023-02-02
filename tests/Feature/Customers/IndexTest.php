@@ -14,10 +14,8 @@ class IndexTest extends TestCase
 
     public function test_index_page_is_displayed(): void
     {
-        $user = User::factory()->create();
-
         $response = $this
-            ->actingAs($user)
+            ->actingAs($this->user)
             ->get('customers');
 
         $response->assertOk();
@@ -25,12 +23,10 @@ class IndexTest extends TestCase
 
     public function test_has_customers_paginated()
     {
-        $user = User::factory()->create();
-
         Customer::factory(15)->create();
 
         $this
-            ->actingAs($user)
+            ->actingAs($this->user)
             ->get('customers')
             ->assertInertia(
                 fn (Assert $page) => $page
