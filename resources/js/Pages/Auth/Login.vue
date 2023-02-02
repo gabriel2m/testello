@@ -49,6 +49,7 @@ const submit = () => {
 
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
+            <small class="text-gray-500">Default: uello@uello.com</small>
 
             <div class="mt-4">
                 <InputLabel for="password" value="Password" />
@@ -64,6 +65,7 @@ const submit = () => {
 
                 <InputError class="mt-2" :message="form.errors.password" />
             </div>
+            <small class="text-gray-500">Default: password</small>
 
             <div class="block mt-4">
                 <label class="flex items-center">
