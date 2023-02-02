@@ -59,4 +59,34 @@ class CustomerController extends Controller
         return inertia('Customers/Show', compact('customer'));
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Customer  $customer
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Customer $customer)
+    {
+        return inertia('Customers/Edit', compact('customer'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\UpdateCustomerRequest  $request
+     * @param  \App\Models\Customer  $customer
+     * @return \Illuminate\Http\Response
+     */
+    public function update(UpdateCustomerRequest $request, Customer $customer)
+    {
+        $message = 'An error occurred';
+        if (
+            $customer
+            ->fill($request->validated())
+            ->save()
+        )
+            $message = 'Customer successfully updated';
+
+        return to_route('customers.show', $customer)->with('message', $message);
+    }
 }
