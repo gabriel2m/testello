@@ -22,4 +22,34 @@ class CustomerController extends Controller
                 ->withQueryString()
         ]);
     }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return inertia('Customers/Create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\StoreCustomerRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StoreCustomerRequest $request)
+    {
+        $message = 'An error occurred';
+
+        if (
+            Customer::create(
+                $request->validated()
+            )->exists
+        )
+            $message = 'Customer successfully stored';
+
+        return to_route('customers.index')->with('message', $message);
+    }
 }
