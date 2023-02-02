@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\Customer;
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Inertia\Testing\AssertableInertia as Assert;
@@ -21,21 +20,24 @@ class IndexTest extends TestCase
         $response->assertOk();
     }
 
-    public function test_has_customers_paginated()
+    public function test_can_view_customers()
     {
-        Customer::factory(15)->create();
+        $customers = Customer::factory(15)->create();
+
+        $first = $customers->sortBy('name')->first();
 
         $this
             ->actingAs($this->user)
             ->get('customers')
             ->assertInertia(
-                fn (Assert $page) => $page
+                fn (Assert $assert) => $assert
                     ->component('Customers/Index')
+                    ->has('customers.data', 10)
                     ->has(
-                        'customers.data',
-                        10,
-                        fn (Assert $page) => $page
-                            ->where('name', Customer::orderBy('name')->first()->name)
+                        'customers.data.0',
+                        fn (Assert $assert) => $assert
+                            ->where('id', $first->id)
+                            ->where('name', $first->name)
                             ->etc()
                     )
             );
