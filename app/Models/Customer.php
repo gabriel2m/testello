@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string name
  * @property Carbon created_at
  * @property Carbon updated_at
+ * @property Delivery[] deliveries
  */
 class Customer extends Model
 {
@@ -19,4 +20,9 @@ class Customer extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function deliveries()
+    {
+        return $this->hasMany(Delivery::class);
+    }
 }

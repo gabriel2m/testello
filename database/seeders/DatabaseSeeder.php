@@ -19,6 +19,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'uello@uello.com',
         ]);
 
-        $this->call(CustomerSeeder::class);
+        $this->call(DeliverySeeder::class);
     }
 }
