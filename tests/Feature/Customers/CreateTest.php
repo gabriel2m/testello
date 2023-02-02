@@ -29,7 +29,9 @@ class CreateTest extends TestCase
             ->actingAs($this->user)
             ->post('customers', $data);
 
-        $response->assertRedirect('customers');
+        $response->assertRedirect('customers/1');
+
+        $data['id'] = 1;
 
         $this->assertDatabaseHas(Customer::class, $data);
     }

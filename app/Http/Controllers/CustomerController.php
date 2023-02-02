@@ -41,16 +41,11 @@ class CustomerController extends Controller
      */
     public function store(StoreCustomerRequest $request)
     {
-        $message = 'An error occurred';
+        $customer = Customer::create($request->validated());
 
-        if (
-            Customer::create(
-                $request->validated()
-            )->exists
-        )
-            $message = 'Customer successfully stored';
-
-        return to_route('customers.index')->with('message', $message);
+        if ($customer->exists)
+            return to_route('customers.show', $customer)->with('message', 'Customer successfully stored');
+        return to_route('customers.index')->with('message', 'An error occurred');
     }
 
     /**

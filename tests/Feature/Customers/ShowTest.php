@@ -11,10 +11,16 @@ class ShowTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected Customer $customer;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->customer = Customer::factory()->create();
+    }
+
     public function test_show_page_is_displayed(): void
     {
-        Customer::factory()->create();
-
         $response = $this
             ->actingAs($this->user)
             ->get('customers/1');
@@ -24,8 +30,6 @@ class ShowTest extends TestCase
 
     public function test_can_view_customer()
     {
-        $customer = Customer::factory()->create();
-
         $this
             ->actingAs($this->user)
             ->get('customers/1')
@@ -33,8 +37,8 @@ class ShowTest extends TestCase
                 fn (Assert $assert) => $assert
                     ->component('Customers/Show')
                     ->has('customer', fn (Assert $assert) => $assert
-                        ->where('id', $customer->id)
-                        ->where('name', $customer->name)
+                        ->where('id', $this->customer->id)
+                        ->where('name', $this->customer->name)
                         ->etc())
             );
     }
