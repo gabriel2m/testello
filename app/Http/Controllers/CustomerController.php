@@ -52,4 +52,16 @@ class CustomerController extends Controller
 
         return to_route('customers.index')->with('message', $message);
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Customer  $customer
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Customer $customer)
+    {
+        return inertia('Customers/Show', compact('customer'));
+    }
+
 }

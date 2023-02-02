@@ -24,7 +24,7 @@ defineProps(['customers']);
             <tr v-for="customer in customers.data" :key="customer.id"
                 class="hover:bg-gray-100 focus-within:bg-gray-100">
                 <td class="border-y">
-                    <Link class="flex items-center px-6 py-4" :href="`/customers/${customer.id}/edit`" tabindex="-1">
+                    <Link class="flex items-center px-6 py-4" :href="`/customers/${customer.id}`" tabindex="-1">
                     {{ customer.name }}
                     </Link>
                 </td>
