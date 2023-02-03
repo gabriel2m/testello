@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,11 @@ Route::middleware('auth')
         Route::delete('profile', [ProfileController::class, 'destroy'])->name('destroy');
     });
 
-Route::resource('customers', CustomerController::class)->middleware(['auth', 'verified']);
+Route::middleware(['auth', 'verified'])
+    ->group(function () {
+        Route::get('customers/{customer}/deliveries/create', [DeliveryController::class, 'bulkCreate'])->name('deliveries.bulk-create');
+        Route::post('customers/{customer}/deliveries', [DeliveryController::class, 'bulkStore'])->name('deliveries.bulk-store');
+        Route::resource('customers', CustomerController::class);
+    });
 
 require __DIR__ . '/auth.php';

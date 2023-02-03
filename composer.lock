@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ac11e975c8ac655e4e1071a5fdd2a334",
+    "content-hash": "6ed8527984d4f04c5e115b6aaf4a8550",
     "packages": [
         {
             "name": "brick/math",
@@ -2253,6 +2253,72 @@
                 }
             ],
             "time": "2022-07-30T15:51:26+00:00"
+        },
+        {
+            "name": "pion/laravel-chunk-upload",
+            "version": "v1.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pionl/laravel-chunk-upload.git",
+                "reference": "e1ffe87e8a50a6a8cf8204c6afd46f6df99083e6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pionl/laravel-chunk-upload/zipball/e1ffe87e8a50a6a8cf8204c6afd46f6df99083e6",
+                "reference": "e1ffe87e8a50a6a8cf8204c6afd46f6df99083e6",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "5.2 - 5.8 | ^6.0 | ^7.0 | ^8.0 | ^9.0",
+                "illuminate/filesystem": "5.2 - 5.8 | ^6.0 | ^7.0 | ^8.0 | ^9.0",
+                "illuminate/http": "5.2 - 5.8 | ^6.0 | ^7.0 | ^8.0 | ^9.0",
+                "illuminate/support": "5.2 - 5.8 | ^6.0 | ^7.0 | ^8.0 | ^9.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.16.0",
+                "mockery/mockery": "^1.1.0 | ^1.3.0",
+                "overtrue/phplint": "^1.1 | ^2.0",
+                "phpunit/phpunit": "5.7 | 6.0 | 7.0 | 7.5 | 8.4 | ^8.5 | ^9.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Pion\\Laravel\\ChunkUpload\\Providers\\ChunkUploadServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Pion\\Laravel\\ChunkUpload\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Martin Kluska",
+                    "email": "martin@kluska.cz"
+                }
+            ],
+            "description": "Service for chunked upload with several js providers",
+            "support": {
+                "issues": "https://github.com/pionl/laravel-chunk-upload/issues",
+                "source": "https://github.com/pionl/laravel-chunk-upload/tree/v1.5.1"
+            },
+            "funding": [
+                {
+                    "url": "https://revolut.me/martinpv7n",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/pionl",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-08-31T07:30:45+00:00"
         },
         {
             "name": "psr/container",
@@ -5838,66 +5904,6 @@
                 "source": "https://github.com/laravel/pint"
             },
             "time": "2023-01-31T15:50:45+00:00"
-        },
-        {
-            "name": "laravel/sail",
-            "version": "v1.19.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/sail.git",
-                "reference": "4f230634a3163f3442def6a4e6ffdb02b02e14d6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/4f230634a3163f3442def6a4e6ffdb02b02e14d6",
-                "reference": "4f230634a3163f3442def6a4e6ffdb02b02e14d6",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/console": "^8.0|^9.0|^10.0",
-                "illuminate/contracts": "^8.0|^9.0|^10.0",
-                "illuminate/support": "^8.0|^9.0|^10.0",
-                "php": "^7.3|^8.0"
-            },
-            "bin": [
-                "bin/sail"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.x-dev"
-                },
-                "laravel": {
-                    "providers": [
-                        "Laravel\\Sail\\SailServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Laravel\\Sail\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylor@laravel.com"
-                }
-            ],
-            "description": "Docker files for running a basic Laravel application.",
-            "keywords": [
-                "docker",
-                "laravel"
-            ],
-            "support": {
-                "issues": "https://github.com/laravel/sail/issues",
-                "source": "https://github.com/laravel/sail"
-            },
-            "time": "2023-01-31T13:37:57+00:00"
         },
         {
             "name": "mockery/mockery",
