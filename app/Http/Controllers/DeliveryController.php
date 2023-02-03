@@ -14,6 +14,19 @@ use Pion\Laravel\ChunkUpload\Receiver\FileReceiver;
 class DeliveryController extends Controller
 {
     /**
+     * Delete all the deliveries of the specified customer.
+     *
+     * @param  \App\Models\Customer  $customer
+     * @return \Illuminate\Http\Response
+     */
+    public function bulkDestroy(Customer $customer)
+    {
+        if ($customer->deliveries()->delete())
+            $message = 'Delivery table successfully deleted';
+        return back()->with('message', $message ?? 'An error occurred');
+    }
+
+    /**
      * Show the form for upload deliveries file for the specified customer.
      *
      * @param  \App\Models\Customer  $customer

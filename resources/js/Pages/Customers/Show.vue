@@ -13,6 +13,10 @@ const deleteCustomer = () => {
     form.delete(route('customers.destroy', props.customer));
 };
 
+const deleteDeliveryTable = () => {
+    form.delete(route('deliveries.bulk-destroy', props.customer));
+};
+
 const reais = (val) => val.toLocaleString('pt-br', {
     style: 'currency',
     currency: 'BRL'
@@ -42,6 +46,9 @@ const kg = (val) => Number(val).toFixed(2) + ' KG';
             class=" ml-6 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
         Update Table
         </Link>
+        <DangerButton class="ml-3" @click="deleteDeliveryTable">
+            Delete Table
+        </DangerButton>
 
         <div class="relative overflow-x-auto">
             <table class="w-full whitespace-nowrap mt-5">

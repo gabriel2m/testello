@@ -39,6 +39,7 @@ Route::middleware(['auth', 'verified'])
     ->group(function () {
         Route::get('customers/{customer}/deliveries/create', [DeliveryController::class, 'bulkCreate'])->name('deliveries.bulk-create');
         Route::post('customers/{customer}/deliveries', [DeliveryController::class, 'bulkStore'])->name('deliveries.bulk-store');
+        Route::delete('customers/{customer}/deliveries', [DeliveryController::class, 'bulkDestroy'])->name('deliveries.bulk-destroy');
         Route::resource('customers', CustomerController::class);
     });
 

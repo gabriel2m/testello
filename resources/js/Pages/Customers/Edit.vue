@@ -17,7 +17,7 @@ const form = useForm({
  
 <template>
 
-    <Head :title="`Edit - ${customer.name} - Customer`" />
+    <Head :title="`Edit - ${customer.name} - Customers`" />
 
     <AuthenticatedLayout>
         <template #header>
