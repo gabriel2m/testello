@@ -1,5 +1,7 @@
-## About Testello
+Testello
+=========
 
+## Overview
 Testello is a software build to perform the following tasks:
 
 - Manage customers with delivery tables
@@ -8,7 +10,6 @@ Testello is a software build to perform the following tasks:
 It was developed using git Trunk Based Development, TDD and Agile.
 
 ## Technologies
-
 - PHP 8.2
 - XDebug 3
 - Docker
@@ -18,15 +19,14 @@ It was developed using git Trunk Based Development, TDD and Agile.
 
 ## Install
 
-**1.1. Docker Build without XDebug**
-
-```
-docker compose build
-```
-**1.2. Docker Build with XDebug**
-
+**1.1. Docker build with XDebug (local)**
 ```
 docker compose build --build-arg INSTALL_XDEBUG=true
+```
+
+**1.2. Docker build without XDebug (prod)**
+```
+docker compose build
 ```
 
 **2. Set .env**
@@ -34,20 +34,17 @@ docker compose build --build-arg INSTALL_XDEBUG=true
 cp .env.example .env
 ```
 
-**3. Docker Up**
-
+**3. Docker up**
 ```
 docker compose up
 ```
 
 **4. Install composer packages**
-
 ```
 docker compose exec app composer install
 ```
 
 **5. Install npm packages**
-
 ```
 docker compose exec app npm install
 ```
@@ -57,12 +54,12 @@ docker compose exec app npm install
 docker compose exec php artisan key:generate
 ```
 
-**7.1. Run the migrations (without populate the database)**
+**7.1. Run migrations (without populate the database)**
 ```
 docker compose exec php artisan migrate
 ```
 
-**7.2. Run the migrations (populate the database)**
+**7.2. Run migrations (populate the database)**
 ```
 docker compose exec php artisan migrate --seed
 ```
@@ -77,12 +74,14 @@ docker compose exec app npm run build
 docker compose exec app php artisan queue:listen
 ```
 
-**10. Done!**
-<br>
-Access [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
-
 ## Run Tests
-
 ```
 docker compose exec app php artisan test
 ```
+
+## Access
+Application: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+<br><br>
+Database (phpMyAdmin): [http://127.0.0.1:8002/](http://127.0.0.1:8002/)
+<br><br>
+Email (MailHog): [http://127.0.0.1:8003/](http://127.0.0.1:8003/)
