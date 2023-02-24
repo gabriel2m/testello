@@ -51,17 +51,17 @@ docker compose exec app npm install
 
 **6. Set app key**
 ```
-docker compose exec php artisan key:generate
+docker compose exec app php artisan key:generate
 ```
 
 **7.1. Run migrations (without populate the database)**
 ```
-docker compose exec php artisan migrate
+docker compose exec app php artisan migrate
 ```
 
 **7.2. Run migrations (populate the database)**
 ```
-docker compose exec php artisan migrate --seed
+docker compose exec app php artisan migrate --seed
 ```
 
 **8. Build Vue**
